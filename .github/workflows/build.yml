@@ -35,8 +35,12 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Run integration tests
-        run: npm test  # This assumes that 'npm test' is configured to run your integration tests
+      #- name: Run integration tests
+      #  run: npm test  # This assumes that 'npm test' is configured to run your integration tests
+
+      - name: Run integration tests with coverage
+        run: npm test --coverage
+
 
   sonarcloud:
     needs: build_and_test  # This ensures SonarCloud analysis runs after the tests
