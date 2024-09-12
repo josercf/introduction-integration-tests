@@ -7,7 +7,7 @@
     "test": "jest",
     "start": "node app",
     "jest": {
-       "test": "jest --coverage"
+       "test": "jest --coverage --config=package.json"
     }
   },
   "jest": {
