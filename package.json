@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "start": "node app"
+    "start": "node app",
+    "jest": {
+      "collectCoverage": true,
+      "coverageReporters": ["lcov", "text"]
+    }
   },
   "repository": {
     "type": "git",
