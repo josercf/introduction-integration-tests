@@ -35,24 +35,20 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      #- name: Run integration tests
-      #  run: npm test  # This assumes that 'npm test' is configured to run your integration tests
-
       - name: Run integration tests with coverage
-        run: npm test --coverage
+        run: npm run test  # Ensure to use npm run to follow package.json script
 
+      - name: List coverage files
+        run: ls -la coverage || echo "No coverage directory found"
 
   sonarcloud:
-    needs: build_and_test  # This ensures SonarCloud analysis runs after the tests
+    needs: build_and_test
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+          fetch-depth: 0
 
-      - name: List coverage files
-        run: ls -la coverage
-        
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         with:
@@ -60,5 +56,5 @@ jobs:
             -Dsonar.coverage.exclusions=**/*.test.js
             -Dsonar.javascript.lcov.reportPaths=coverage/lcov.info
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

@@ -4,12 +4,13 @@
   "description": "Testes de integração",
   "main": "index.js",
   "scripts": {
-    "test": "jest --coverage --config=package.json",
+    "test": "jest --coverage",
     "start": "node app"
   },
   "jest": {
-  "collectCoverage": true,
-  "coverageReporters": ["lcov", "text"]
+    "collectCoverage": true,
+    "coverageReporters": ["lcov", "text"],
+    "testEnvironment": "node"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,7 @@
   "keywords": [
     "tdd",
     "teste",
-    "inteegração"
+    "integração"
   ],
   "author": "José Romualdo",
   "license": "ISC",
