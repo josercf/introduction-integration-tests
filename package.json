@@ -4,11 +4,8 @@
   "description": "Testes de integração",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
-    "start": "node app",
-    "jest": {
-       "test": "jest --coverage --config=package.json"
-    }
+    "test": "jest --coverage --config=package.json",
+    "start": "node app"
   },
   "jest": {
   "collectCoverage": true,
