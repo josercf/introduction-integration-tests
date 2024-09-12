@@ -7,9 +7,12 @@
     "test": "jest",
     "start": "node app",
     "jest": {
-      "collectCoverage": true,
-      "coverageReporters": ["lcov", "text"]
+       "test": "jest --coverage"
     }
+  },
+  "jest": {
+  "collectCoverage": true,
+  "coverageReporters": ["lcov", "text"]
   },
   "repository": {
     "type": "git",
