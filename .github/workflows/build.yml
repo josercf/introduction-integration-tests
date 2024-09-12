@@ -1,4 +1,5 @@
-name: Deploy
+name: Deploy and Test
+
 on:
   push:
     branches:
@@ -16,14 +17,35 @@ on:
         - debug
   pull_request:
     types: [opened, synchronize, reopened]
+
 jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'  # Specify the Node.js version here
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run integration tests
+        run: npm test  # This assumes that 'npm test' is configured to run your integration tests
+
   sonarcloud:
-    name: SonarCloud
+    needs: build_and_test  # This ensures SonarCloud analysis runs after the tests
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
