@@ -32,10 +32,8 @@ jobs:
           CI: true
 
       # Snyk Security Analysis
-      - name: Snyk Security Scan
-        uses: snyk/actions/node@v2
-        with:
-          args: test
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
