@@ -27,15 +27,15 @@ jobs:
 
       # Run unit tests with Jest
       - name: Run unit tests
-        run: npm run test:unit
+        run: npm run test
         env:
           CI: true
 
       # Run integration tests with SuperTest
-      - name: Run integration tests
-        run: npm run test:integration
-        env:
-          CI: true
+      #- name: Run integration tests
+      #  run: npm run test:integration
+      #  env:
+      #    CI: true
 
       # Run SonarQube analysis
       - name: SonarQube Scan
