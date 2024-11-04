@@ -31,6 +31,14 @@ jobs:
         env:
           CI: true
 
+      # Snyk Security Analysis
+      - name: Snyk Security Scan
+        uses: snyk/actions/node@v2
+        with:
+          args: test
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
       # Run integration tests with SuperTest
       #- name: Run integration tests
       #  run: npm run test:integration
